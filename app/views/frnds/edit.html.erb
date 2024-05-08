@@ -6,6 +6,6 @@
 
 <div>
   <%= link_to "Show", @frnd, class:"btn btn-secondary" %> 
-  <%= link_to "Delete", @frnd, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+  <%= button_to "Delete", @frnd, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
   <%= link_to "Back", frnds_path, class:"btn btn-dark" %>
 </div>
