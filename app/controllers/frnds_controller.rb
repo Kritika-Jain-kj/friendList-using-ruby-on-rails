@@ -1,5 +1,5 @@
 class FrndsController < ApplicationController
-  before_action :set_frnd, only: %i[ show edit update destroy ]
+  before_action :set_frnd, only: [:show, :edit, :update, :destroy ]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
@@ -23,11 +23,11 @@ class FrndsController < ApplicationController
   
   # POST /frnds or /frnds.json
   def create
-    @frnd = current_user.frnds.build(frnds_param)
+    @frnd = current_user.frnds.build(frnd_params)
 
     respond_to do |format|
       if @frnd.save
-        format.html { redirect_to frnd_url(@frnd), notice: "Frnd was successfully created." }
+        format.html { redirect_to @frnd, notice: "Friend was successfully created." }
         format.json { render :show, status: :created, location: @frnd }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class FrndsController < ApplicationController
   def update
     respond_to do |format|
       if @frnd.update(frnd_params)
-        format.html { redirect_to frnd_url(@frnd), notice: "Frnd was successfully updated." }
+        format.html { redirect_to @frnd, notice: "Frnd was successfully updated." }
         format.json { render :show, status: :ok, location: @frnd }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,14 +53,14 @@ class FrndsController < ApplicationController
   def destroy
     @frnd.destroy
     respond_to do |format|
-      format.html { redirect_to frnd_url, notice: "Frnd was successfully destroyed." }
+      format.html { redirect_to frnds_url, notice: "Friend was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   def correct_user
     @frnd = current_user.frnds.find_by(id: params[:id])
-    redirect_to frnds_path, notice: "Not Authorized" if @frnd.nil?
+    redirect_to frnds_path, notice: "Not Authorized To Edit This Friend" if @frnd.nil?
   end
 
 
