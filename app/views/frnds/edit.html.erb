@@ -4,8 +4,12 @@
 
 <br>
 
-<div>
-  <%= link_to "Show", @frnd, class:"btn btn-secondary" %> 
-  <%= button_to "Delete", @frnd, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+<div >
+  <div class="btn-group me-2" role="group" aria-label="First group">
+    <%= link_to "Show", @frnd, class:"btn btn-secondary" %> 
+  </div>
+  <div class="btn-group me-2" role="group" aria-label="Second group">
+    <%= button_to "Delete", @frnd, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+  </div>
   <%= link_to "Back", frnds_path, class:"btn btn-dark" %>
 </div>
