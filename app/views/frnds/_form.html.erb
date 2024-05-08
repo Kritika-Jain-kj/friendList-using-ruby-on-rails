@@ -1,0 +1,51 @@
+<%= form_with(model: frnd) do |form| %>
+  <% if frnd.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(frnd.errors.count, "error") %> prohibited this frnd from being saved:</h2>
+
+      <ul>
+        <% frnd.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    
+    <%= form.text_field :first_name, class: "form-control", placeholder:"First Name" %>
+  </div>
+  <br>
+  <div class="field form-group">
+    
+    <%= form.text_field :last_name, class: "form-control", placeholder:"Last Name" %>
+  </div>
+  <br>
+
+  <div class="form-group">
+    
+    <%= form.text_field :email, class: "form-control", placeholder: "Email" %>
+  </div>
+  <br>
+
+  <div class="form-group">
+    
+    <%= form.text_field :phone, class: "form-control", placeholder:"Phone Number" %>
+  </div>
+  <br>
+
+  <div class="form-group">
+    
+    <%= form.text_field :twitter, class: "form-control", placeholder:"Twitter" %>
+  </div>
+
+  <div class="form-group">
+    
+    <%= form.number_field :user_id, id: :frnds_user_id, class: "form-control", placeholder:"User Id", value: current_user.id, type: :hidden  %>
+    
+  </div>
+  <br>
+  <div>
+    <%= form.submit class: 'btn btn-secondary' %>
+  </div>
+<% end %>
